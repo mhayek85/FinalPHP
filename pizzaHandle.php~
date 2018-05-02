@@ -1,0 +1,71 @@
+<?php
+session_start();
+
+
+
+
+/*OUR CHECKS HERE ARE USED TO DETERMINE IF WE ARE ADDING A NEW PIZZA TO AN EXISTING ORDER OR IF THIS IS A COMPLETELY NEW ORDER
+WE ALSO CHECK TO SEE THAT ALL THE SELECTIONS ARE CHOSEN RELATING TO THE PIZZA TABLE
+*/
+
+if(isset($_POST['size']) && isset($_POST['sauce']) && isset($_POST['cheese']) && isset($_POST['dough']))
+{
+$_SESSION['size'] = $_POST['size'];
+$_SESSION['sauce'] = $_POST['sauce'];
+$_SESSION['cheese'] = $_POST['cheese'];
+$_SESSION['dough'] = $_POST['dough'];
+	if(empty($_SESSION['order_id']))
+	{
+		$db_conn = connect_db();
+		createOrder($db_conn);
+		echo $_SESSION['address_name'];
+		echo "OK NEW ORDER";
+	}
+	else if(!empty($_SESSION['order_id'])){
+		echo "OK SAME ORDER";
+	}
+
+}
+else {
+	echo "INVALID";
+}
+
+
+/*THE CONNECT DB FUNCTION IS USE TO CONNECT TO THE DATABASE*/
+function connect_db(){
+    $db_conn = new mysqli('localhost', 'lamp1user', '!Lamp1!', 'pizzaProject');
+    if ($db_conn->connect_errno) {
+        printf ("Could not connect to database server\n Error: "
+            .$db_conn->connect_errno ."\n Report: "
+            .$db_conn->connect_error."\n");
+        die;
+    }
+    return $db_conn;
+}
+
+/*THE DISCONNECT DB FUNCTION IS USED TO DISCONNECT TO THE DATABASE*/
+function disconnect_db($db_conn){
+    $db_conn->close();
+}
+
+/*THE CREATEORDER FUNCTION IS USE TO BEGIN THE ORDER
+IT CREATES AN ORDER NUMBER AND INSERTS INTO THE ORDER TABLE*/
+function createOrder($db_conn)
+{
+	$email = $db_conn->real_escape_string($_SESSION['email']);
+	$qry = "insert into orders (or_member_ID, order_type) VALUES ((SELECT member_ID from member where email='".$email."'), 'online');";
+	if ($db_conn->query($qry) === TRUE) 
+  		{    
+  			$last_id = $db_conn->insert_id;
+  			$_SESSION['order_id'] = $last_id;
+      	echo "Inserted successfully";
+ 	   } 
+    else 
+  		{   
+      	echo "Error:";
+  		}
+
+
+}
+
+?>
