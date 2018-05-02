@@ -1,0 +1,125 @@
+body {
+	background: lightsalmon;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	box-sizing: border-box;
+}
+
+.content {
+	padding: 20px;
+}
+
+#form2 {
+	display: none;
+}
+
+#form3 {
+	display: none;
+}
+
+#form4 {
+	display: none;
+}
+
+#form5 {
+	display: none;
+}
+
+#form7 {
+	display: none;
+}
+
+#form6 {
+	display: none;
+}
+
+#orderSum {
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin: 5% auto;
+}
+
+#orderSum tr td {
+	padding: 4px;
+}
+
+#b_order {
+	width: 250px;
+	height: 75px;
+	border: 2px solid rgb(199, 106, 0);
+	border-radius: 10px;
+}
+
+#register1 {
+	display: none;
+}
+
+#newAdd {
+	display: none;
+}
+
+img {
+	width: 800px;
+	height: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.cdiv {
+	width: 800px;
+	height: auto;
+	text-align: center;
+	border: 2px solid #999;
+	background: #fff;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+#company {
+	margin-left: -5%;
+	margin-right: -5%;
+	margin-top: -1%;
+	text-align: center;
+}
+
+.loading {
+	width: 200px;
+	height: 200px;
+}
+
+.error {
+	color: red;
+}
+
+#checkmark {
+	width: 100px;
+	height: 100px;
+	margin: 5% auto;
+}
+
+#info {
+	padding: 2%;
+}
+
+#use {
+	margin: 1%;
+}
+
+.adresses {
+	margin-bottom: 5px;
+}
+
+.adresses input {
+	margin: 0 5px;
+}
+
+.typeLabel {
+	margin-right: 10px;
+	vertical-align: middle;
+	padding-top: 6px;
+}
+
+#btnLogin {
+	margin: 3%;
+}
